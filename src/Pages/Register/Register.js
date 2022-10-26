@@ -1,9 +1,32 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Register = () => {
+  const { userRegistration } = useContext(AuthContext);
+
+  const handelSubmit = event => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    userRegistration(email, password)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch(error => console.error(error));
+
+    console.log(name, photoURL, email, password);
+    form.reset();
+  };
+
   return (
-    <div>
+    <form onSubmit={handelSubmit}>
       <div className="hero items-start min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -17,6 +40,7 @@ const Register = () => {
                 </label>
                 <input
                   type="text"
+                  name="name"
                   placeholder="full name"
                   className="input input-bordered"
                 />
@@ -27,6 +51,7 @@ const Register = () => {
                 </label>
                 <input
                   type="text"
+                  name="photoURL"
                   placeholder="photo URL"
                   className="input input-bordered"
                 />
@@ -37,8 +62,10 @@ const Register = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="email"
                   className="input input-bordered"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -46,9 +73,11 @@ const Register = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                  type="password"
+                  name="password"
                   placeholder="password"
                   className="input input-bordered"
+                  required
                 />
                 <label className="label">
                   <p>
@@ -71,7 +100,7 @@ const Register = () => {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
