@@ -6,6 +6,7 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import app from "../../firebase/firebase.config";
@@ -44,11 +45,16 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, userProfile);
   };
 
+  // sign out
+  const userSignOut = () => {
+    return signOut(auth);
+  };
   const authInfo = {
     user,
     userRegistration,
     userGoogleLogin,
     userProfileUpdate,
+    userSignOut,
   };
 
   return (

@@ -1,12 +1,23 @@
 import React from "react";
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { FcKey } from "react-icons/fc";
+import { Link, NavLink } from "react-router-dom";
 import brandLogo from "../../../Assets/logoCL-Anai.png";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, userSignOut } = useContext(AuthContext);
   console.log(user);
+
+  const handelSignOut = () => {
+    userSignOut()
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch(error => {
+        // An error happened.
+      });
+  };
   return (
     <div className="navbar bg-orange-100">
       <div className="navbar-start">
@@ -43,12 +54,28 @@ const Header = () => {
             <li>
               <NavLink to="/blog">Blog</NavLink>
             </li>
-            <li>
-              <NavLink to="/login">Login</NavLink>
-            </li>
-            <li>
-              <NavLink to="/register">Register</NavLink>
-            </li>
+            {/* conditional login buttons */}
+            {user?.uid ? (
+              <>
+                <li>
+                  <button
+                    onClick={handelSignOut}
+                    className="btn btn-outline btn-error"
+                  >
+                    Sign Out
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <NavLink to="/login">Login</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/register">Register</NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <img className="w-1/2" src={brandLogo} alt="" />
@@ -67,16 +94,40 @@ const Header = () => {
           <li>
             <NavLink to="/blog">Blog</NavLink>
           </li>
-          <li>
-            <NavLink to="/login">Login</NavLink>
-          </li>
-          <li>
-            <NavLink to="/register">Register</NavLink>
-          </li>
+
+          {/* conditional login buttons */}
+          {user?.uid ? (
+            <>
+              <li>
+                <button
+                  onClick={handelSignOut}
+                  className="btn btn-outline btn-error"
+                >
+                  Sign Out
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/login">Login</NavLink>
+              </li>
+              <li>
+                <NavLink to="/register">Register</NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">{user?.displayName}</a>
+        {user?.displayName && user?.uid ? (
+          <>
+            {user?.displayName}{" "}
+            <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
+          </>
+        ) : (
+          <FcKey className="w-12 h-8"></FcKey>
+        )}
       </div>
     </div>
   );
