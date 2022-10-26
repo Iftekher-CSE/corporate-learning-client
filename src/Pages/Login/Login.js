@@ -6,9 +6,21 @@ import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { userGoogleLogin } = useContext(AuthContext);
+  const { userGoogleLogin, userGitLogin } = useContext(AuthContext);
+
+  // Handel Google login btn
   const handelGoogleLogin = () => {
     userGoogleLogin()
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch(error => console.error(error));
+  };
+
+  // Handel git login btn
+  const handelGitLogin = () => {
+    userGitLogin()
       .then(result => {
         const user = result.user;
         console.log(user);
@@ -76,7 +88,7 @@ const Login = () => {
               >
                 <FcGoogle></FcGoogle> Login
               </button>
-              <button className="btn btn-outline ">
+              <button onClick={handelGitLogin} className="btn btn-outline ">
                 <BsGithub></BsGithub> Login
               </button>
             </div>

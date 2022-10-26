@@ -120,7 +120,7 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {user?.displayName && user?.uid ? (
+        {user?.uid ? (
           <>
             {user?.displayName}{" "}
             <img className="w-10 rounded-full" src={user?.photoURL} alt="" />

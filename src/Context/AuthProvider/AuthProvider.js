@@ -3,6 +3,7 @@ import { createContext } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
@@ -15,7 +16,8 @@ import { useState } from "react";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+const providerGoogle = new GoogleAuthProvider();
+const providerGit = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -37,7 +39,12 @@ const AuthProvider = ({ children }) => {
 
   // login with google
   const userGoogleLogin = () => {
-    return signInWithPopup(auth, provider);
+    return signInWithPopup(auth, providerGoogle);
+  };
+
+  // git login
+  const userGitLogin = () => {
+    return signInWithPopup(auth, providerGit);
   };
 
   // update user Profile
@@ -53,6 +60,7 @@ const AuthProvider = ({ children }) => {
     user,
     userRegistration,
     userGoogleLogin,
+    userGitLogin,
     userProfileUpdate,
     userSignOut,
   };
