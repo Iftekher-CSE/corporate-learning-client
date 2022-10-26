@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Register = () => {
-  const { userRegistration } = useContext(AuthContext);
+  const { userRegistration, userProfileUpdate } = useContext(AuthContext);
 
   const handelSubmit = event => {
     event.preventDefault();
@@ -21,7 +21,14 @@ const Register = () => {
       })
       .catch(error => console.error(error));
 
-    console.log(name, photoURL, email, password);
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+    userProfileUpdate(profile)
+      .then(() => {})
+      .catch(error => console.error(error));
+
     form.reset();
   };
 
@@ -82,7 +89,7 @@ const Register = () => {
                 <label className="label">
                   <p>
                     <small>
-                      If uou have account,{" "}
+                      If you have account,{" "}
                       <Link
                         to="/login"
                         className="label-text-alt link link-hover"

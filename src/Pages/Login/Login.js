@@ -1,7 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { BsGithub } from "react-icons/bs";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { userGoogleLogin } = useContext(AuthContext);
+  const handelGoogleLogin = () => {
+    userGoogleLogin()
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch(error => console.error(error));
+  };
+
   return (
     <div>
       <div className="hero items-start min-h-screen bg-base-200">
@@ -10,7 +24,7 @@ const Login = () => {
             <h1 className="text-5xl font-bold">Login now!</h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="card-body">
+            <form className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -52,6 +66,19 @@ const Login = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
+            </form>
+
+            {/* Google and git login button */}
+            <div className="flex justify-around mb-4">
+              <button
+                onClick={handelGoogleLogin}
+                className="btn btn-outline btn-info rounded-md"
+              >
+                <FcGoogle></FcGoogle> Login
+              </button>
+              <button className="btn btn-outline ">
+                <BsGithub></BsGithub> Login
+              </button>
             </div>
           </div>
         </div>

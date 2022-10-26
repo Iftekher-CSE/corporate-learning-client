@@ -1,8 +1,12 @@
 import React from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import brandLogo from "../../../Assets/logoCL-Anai.png";
+import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   return (
     <div className="navbar bg-orange-100">
       <div className="navbar-start">
@@ -72,7 +76,7 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">{"user"}</a>
+        <a className="btn">{user?.displayName}</a>
       </div>
     </div>
   );
