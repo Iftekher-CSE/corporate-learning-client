@@ -37,7 +37,7 @@ const CourseDetails = () => {
           <p>{courseDetails.brief}</p>
           <div className="card-actions justify-end">
             <div>
-              <Link>
+              <Link to="/checkout">
                 <button className="btn btn-primary">Get premium access.</button>
               </Link>
             </div>

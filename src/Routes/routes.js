@@ -2,6 +2,7 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layouts/Main/Main";
 import Blog from "../Pages/Blog/Blog";
+import Checkout from "../Pages/Checkout/Checkout";
 import CourseDetails from "../Pages/Courses/CourseDetails/CourseDetails";
 import Courses from "../Pages/Courses/Courses/Courses";
 import Error404 from "../Pages/Error404/Error404";
@@ -48,6 +49,10 @@ export const routes = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout></Checkout>,
       },
     ],
   },
