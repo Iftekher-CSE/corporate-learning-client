@@ -23,7 +23,7 @@ const CourseContainer = () => {
                 <h4>Course Duration: {course.duration}</h4>
                 <h4>Course Type: {course.courseType}</h4> <br />
                 <h2 className="text-xl font-bold">
-                  Course Cost: {course.cost}
+                  Course Cost Taka: {course.cost}
                 </h2>
               </div>
               <div className="card-actions items-center">
