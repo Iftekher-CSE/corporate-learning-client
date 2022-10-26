@@ -4,6 +4,7 @@ import Main from "../Layouts/Main/Main";
 import Blog from "../Pages/Blog/Blog";
 import CourseDetails from "../Pages/Courses/CourseDetails/CourseDetails";
 import Courses from "../Pages/Courses/Courses/Courses";
+import Error404 from "../Pages/Error404/Error404";
 import FAQ from "../Pages/FAQ/FAQ";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
@@ -37,9 +38,10 @@ export const routes = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
-      {
-        path: "*",
-      },
     ],
+  },
+  {
+    path: "*",
+    element: <Error404></Error404>,
   },
 ]);
