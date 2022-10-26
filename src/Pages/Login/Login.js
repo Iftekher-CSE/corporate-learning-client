@@ -4,9 +4,31 @@ import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+import { useState } from "react";
 
 const Login = () => {
-  const { userGoogleLogin, userGitLogin } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const { userSingIn, userGoogleLogin, userGitLogin } = useContext(AuthContext);
+
+  // get login data and user login
+  const formSubmitHandler = event => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    userSingIn(email, password)
+      .then(result => {
+        setError("");
+        const user = result.user;
+        console.log(user);
+      })
+      .catch(error => {
+        console.error(error);
+        setError(error.message);
+      });
+
+    form.reset();
+  };
 
   // Handel Google login btn
   const handelGoogleLogin = () => {
@@ -15,7 +37,9 @@ const Login = () => {
         const user = result.user;
         console.log(user);
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   // Handel git login btn
@@ -36,14 +60,15 @@ const Login = () => {
             <h1 className="text-5xl font-bold">Login now!</h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body">
+            <form onSubmit={formSubmitHandler} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   placeholder="email"
+                  name="email"
                   className="input input-bordered"
                 />
               </div>
@@ -52,14 +77,15 @@ const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="password"
+                  name="password"
                   className="input input-bordered"
                 />
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
+                  <p>
+                    <small className="text-red-500">{error}</small>
+                  </p>
                 </label>
                 <label className="label">
                   <p>

@@ -122,7 +122,7 @@ const Header = () => {
       <div className="navbar-end">
         {user?.uid ? (
           <>
-            {user?.displayName}{" "}
+            {user?.displayName ? user?.displayName : user?.email}{" "}
             <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
           </>
         ) : (
