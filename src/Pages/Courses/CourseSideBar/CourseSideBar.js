@@ -4,7 +4,7 @@ import { CoursesContext } from "../Courses/Courses";
 
 const CourseSideBar = () => {
   const courses = useContext(CoursesContext);
-  console.log(courses);
+  // console.log(courses);
   return (
     // <div className="btn-group btn-group-vertical">
     //   <button className="btn">Button</button>
