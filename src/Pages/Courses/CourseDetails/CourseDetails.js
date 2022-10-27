@@ -23,7 +23,7 @@ const CourseDetails = () => {
       </div>
 
       {/* Course Details */}
-      <div className="card w-100 bg-base-100 shadow-xl m-8">
+      <div className="card lg:card-side w-100 bg-base-100 shadow-xl m-8">
         <figure>
           <img src={courseDetails.imgURL} alt="Shoes" />
         </figure>

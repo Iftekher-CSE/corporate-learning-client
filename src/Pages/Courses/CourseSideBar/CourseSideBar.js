@@ -6,13 +6,21 @@ const CourseSideBar = () => {
   const courses = useContext(CoursesContext);
   console.log(courses);
   return (
-    <div className="border">
-      <h3>Total {courses.length} courses</h3>
-      {courses.map(course => (
-        <Link key={course.id} to={`/courses/${course.id}`}>
-          {course.courseName}
-        </Link>
-      ))}
+    // <div className="btn-group btn-group-vertical">
+    //   <button className="btn">Button</button>
+    // </div>
+
+    <div className="">
+      <h3 className="text-2xl font-bold">Total {courses.length} courses</h3>
+      <div className="btn-group btn-group-vertical">
+        {courses.map(course => (
+          <Link key={course.id} to={`/courses/${course.id}`}>
+            <button className="btn py-4 my-2 btn-block btn-primary">
+              {course.courseName}
+            </button>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
