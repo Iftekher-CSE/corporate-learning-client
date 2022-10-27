@@ -13,23 +13,27 @@ const Register = () => {
     const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
+    console.log(name, photoURL, email, password);
 
+    // user registration and update profile
     userRegistration(email, password)
       .then(result => {
         const user = result.user;
         console.log(user);
+
+        // update user profile
+        const profile = {
+          displayName: name,
+          photoURL: photoURL,
+        };
+        userProfileUpdate(profile)
+          .then(() => {})
+          .catch(error => console.error(error));
+
+        // form reset
+        form.reset();
       })
       .catch(error => console.error(error));
-
-    const profile = {
-      displayName: name,
-      photoURL: photoURL,
-    };
-    userProfileUpdate(profile)
-      .then(() => {})
-      .catch(error => console.error(error));
-
-    form.reset();
   };
 
   return (

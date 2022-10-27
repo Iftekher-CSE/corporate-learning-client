@@ -29,41 +29,49 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       console.log(currentUser);
       setUser(currentUser);
+      setLoading(false);
     });
-    return unsubscribe();
+    return () => unsubscribe();
   }, []);
 
   // user initial registration with email and pass
   const userRegistration = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // user sign in with email and pass
   const userSingIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   // login with google
   const userGoogleLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, providerGoogle);
   };
 
   // git login
   const userGitLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, providerGit);
   };
 
   // update user Profile
   const userProfileUpdate = userProfile => {
+    setLoading(true);
     return updateProfile(auth.currentUser, userProfile);
   };
 
   // sign out
   const userSignOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
   const authInfo = {
     user,
+    loading,
     userRegistration,
     userSingIn,
     userGoogleLogin,

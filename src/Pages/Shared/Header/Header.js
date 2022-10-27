@@ -123,7 +123,12 @@ const Header = () => {
         {user?.uid ? (
           <>
             {user?.displayName ? user?.displayName : user?.email}{" "}
-            <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
+            <img
+              title={user?.displayName ? user?.displayName : user?.email}
+              className="w-10 rounded-full"
+              src={user?.photoURL}
+              alt=""
+            />
           </>
         ) : (
           <FcKey className="w-12 h-8"></FcKey>

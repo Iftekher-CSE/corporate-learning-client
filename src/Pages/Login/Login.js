@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
 import { useContext } from "react";
@@ -9,6 +9,9 @@ import { useState } from "react";
 const Login = () => {
   const [error, setError] = useState("");
   const { userSingIn, userGoogleLogin, userGitLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   // get login data and user login
   const formSubmitHandler = event => {
@@ -21,6 +24,7 @@ const Login = () => {
         setError("");
         const user = result.user;
         console.log(user);
+        navigate(from, { replace: true });
       })
       .catch(error => {
         console.error(error);
