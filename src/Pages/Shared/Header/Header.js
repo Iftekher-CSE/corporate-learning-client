@@ -1,11 +1,19 @@
 import React from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { FcKey } from "react-icons/fc";
 import { Link, NavLink } from "react-router-dom";
 import brandLogo from "../../../Assets/logoCL-Anai.png";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
+import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 const Header = () => {
+  const [toggle, setToggle] = useState(false);
+
+  // const handelToggle = () => {
+  //   if(toggle)
+  // };
+
   const { user, userSignOut } = useContext(AuthContext);
   console.log(user);
 
@@ -122,6 +130,23 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end">
+        {/* Toggle Button */}
+        <button
+          onClick={() => setToggle(!toggle)}
+          className="btn btn-active btn-ghost"
+        >
+          {toggle ? (
+            <>
+              <MdDarkMode></MdDarkMode> Dark
+            </>
+          ) : (
+            <>
+              <MdOutlineLightMode></MdOutlineLightMode> Light
+            </>
+          )}
+        </button>
+
+        {/* condition user name and photo */}
         {user?.uid ? (
           <>
             {user?.displayName ? user?.displayName : user?.email}{" "}
