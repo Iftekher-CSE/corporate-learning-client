@@ -5,10 +5,11 @@ import { CoursesContext } from "../Courses/Courses";
 
 const CourseContainer = () => {
   const courses = useContext(CoursesContext);
+
   return (
     <div className="grid grid-cols-1 gap-4 p-6">
       {courses.map(course => (
-        <div className="lg:h-48">
+        <div key={course.id} className="lg:h-48">
           <div className="card lg:card-side bg-base-100 shadow-xl">
             <figure>
               <img
