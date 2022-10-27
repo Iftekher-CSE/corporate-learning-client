@@ -62,9 +62,9 @@ const Home = () => {
       <h3 className="text-3xl text-center bg-orange-300 mx-9 rounded-xl">
         All Our Courses at a Glance
       </h3>
-      <div className="grid grid-cols-3 gap-4 p-6 mx-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-6 mx-8">
         {allCourses.map(course => (
-          <div className="card w-96 bg-base-100 shadow-xl image-full">
+          <div className="card w-full bg-base-100 shadow-xl image-full">
             <figure>
               <img src={course.imgURL} alt="Shoes" />
             </figure>

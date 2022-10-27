@@ -8,12 +8,12 @@ const Courses = () => {
   const courses = useLoaderData();
 
   return (
-    <div className="flex">
+    <div className="lg:flex">
       <CoursesContext.Provider value={courses}>
-        <div className="flex-auto w-10/12">
+        <div className="flex-auto w-full lg:w-10/12">
           <CourseContainer></CourseContainer>
         </div>
-        <div className="flex-auto w-2/12">
+        <div className="flex-auto lg:w-2/12">
           <CourseSideBar></CourseSideBar>
         </div>
       </CoursesContext.Provider>

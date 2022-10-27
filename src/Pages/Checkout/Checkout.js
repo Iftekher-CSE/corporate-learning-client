@@ -9,7 +9,7 @@ const Checkout = () => {
       <h3 className="text-center text-3xl font-bold m-8">
         You Have successfully Checkout with premium access...!!!
       </h3>
-      <div className="flex w-full">
+      <div className="flex w-full flex-col gap-4 lg:flex-row">
         <div className="grid h-40 flex-grow card bg-base-300 rounded-box place-items-center">
           <div>
             <h2 className="text-3xl font-bold">

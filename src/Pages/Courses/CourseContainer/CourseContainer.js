@@ -18,7 +18,7 @@ const CourseContainer = () => {
                 alt="Album"
               />
             </figure>
-            <div className="card-body flex flex-row bg-orange-200">
+            <div className="card-body flex flex-col lg:flex-row bg-orange-200">
               <div className="grow">
                 <h2 className="card-title">{course.courseName}</h2>
                 <h4>Course Duration: {course.duration}</h4>
