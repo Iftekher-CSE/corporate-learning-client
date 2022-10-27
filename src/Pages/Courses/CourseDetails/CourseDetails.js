@@ -1,9 +1,12 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { FaBookReader } from "react-icons/fa";
+import Pdf from "react-to-pdf";
 
 const CourseDetails = () => {
+  const ref = React.createRef();
   const courseDetails = useLoaderData();
+
   return (
     <div>
       {/* Course Details container Header */}
@@ -18,7 +21,13 @@ const CourseDetails = () => {
           </div>
         </div>
         <div className="flex-none">
-          <button className="btn btn-sm">PDF Download</button>
+          <Pdf targetRef={ref} filename={`${courseDetails.courseName}.pdf`}>
+            {({ toPdf }) => (
+              <button className="btn btn-sm" onClick={toPdf}>
+                PDF Download
+              </button>
+            )}
+          </Pdf>
         </div>
       </div>
 
@@ -27,7 +36,7 @@ const CourseDetails = () => {
         <figure>
           <img src={courseDetails.imgURL} alt="Shoes" />
         </figure>
-        <div className="card-body">
+        <div ref={ref} className="card-body">
           <h2 className="card-title">
             {courseDetails.courseName}
             <div className="badge badge-secondary">NEW</div>
